@@ -9,10 +9,12 @@ from .routers import tasks
 
 app = FastAPI(title="Task Manager API")
 
-origins_env = os.getenv(
-    "FRONTEND_ORIGINS"
-)
-origins = [origin.strip() for origin in origins_env.split(",") if origin.strip()]
+origins_env = os.getenv("FRONTEND_ORIGINS")
+if origins_env:
+    origins = [origin.strip() for origin in origins_env.split(",") if origin.strip()]
+else:
+    # дефолт только для локальной разработки
+    origins = ["http://localhost:5173"]
 
 app.add_middleware(
     CORSMiddleware,
