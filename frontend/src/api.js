@@ -1,5 +1,5 @@
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
-const TASKS_ENDPOINT = `${API_BASE_URL}/tasks`;
+const TASKS_BASE = `${API_BASE_URL}/tasks`;
 
 async function handleResponse(response) {
   if (response.ok) {
@@ -25,12 +25,12 @@ async function handleResponse(response) {
 }
 
 export async function getTasks() {
-  const res = await fetch(TASKS_ENDPOINT);
+  const res = await fetch(`${TASKS_BASE}/`);
   return handleResponse(res);
 }
 
 export async function createTask(payload) {
-  const res = await fetch(TASKS_ENDPOINT, {
+  const res = await fetch(`${TASKS_BASE}/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -41,7 +41,7 @@ export async function createTask(payload) {
 }
 
 export async function updateTask(id, payload) {
-  const res = await fetch(`${TASKS_ENDPOINT}/${id}`, {
+  const res = await fetch(`${TASKS_BASE}/${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
@@ -52,7 +52,7 @@ export async function updateTask(id, payload) {
 }
 
 export async function deleteTask(id) {
-  const res = await fetch(`${TASKS_ENDPOINT}/${id}`, {
+  const res = await fetch(`${TASKS_BASE}/${id}`, {
     method: 'DELETE'
   });
   return handleResponse(res);
