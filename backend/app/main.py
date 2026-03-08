@@ -10,8 +10,7 @@ from .routers import tasks
 app = FastAPI(title="Task Manager API")
 
 origins_env = os.getenv(
-    "FRONTEND_ORIGINS",
-    "http://localhost:5173",
+    "FRONTEND_ORIGINS"
 )
 origins = [origin.strip() for origin in origins_env.split(",") if origin.strip()]
 
