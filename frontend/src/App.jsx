@@ -4,6 +4,11 @@ import TaskList from './components/TaskList.jsx';
 import TaskForm from './components/TaskForm.jsx';
 
 const App = () => {
+  const [theme, setTheme] = useState(
+    () =>
+      (typeof window !== 'undefined' && window.localStorage.getItem('theme')) ||
+      'dark'
+  );
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -26,6 +31,15 @@ const App = () => {
   useEffect(() => {
     loadTasks();
   }, []);
+
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      document.documentElement.setAttribute('data-theme', theme);
+    }
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem('theme', theme);
+    }
+  }, [theme]);
 
   const handleCreate = async (values) => {
     try {
@@ -74,6 +88,13 @@ const App = () => {
     <div className="app-container">
       <header className="app-header">
         <h1>Task Manager</h1>
+        <button
+          type="button"
+          className="theme-toggle"
+          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+        >
+          {theme === 'dark' ? 'Светлая тема' : 'Тёмная тема'}
+        </button>
       </header>
 
       <main className="app-main">

@@ -1,4 +1,14 @@
 :root {
+  --bg-body: radial-gradient(circle at top left, #1e293b, #020617 50%, #000);
+  --bg-surface: linear-gradient(145deg, #020617, #020617);
+  --bg-surface-alt: radial-gradient(circle at top left, #0b1120, #020617);
+  --bg-input: radial-gradient(circle at top left, #020617, #000);
+  --bg-input-focus: radial-gradient(circle at top left, #020617, #020617);
+  --bg-item: radial-gradient(circle at top left, #020617, #000);
+  --bg-item-hover: radial-gradient(circle at top left, #020617, #020617);
+  --border-elevated: rgba(148, 163, 184, 0.15);
+  --border-refresh: rgba(148, 163, 184, 0.35);
+  --border-item: rgba(30, 64, 175, 0.45);
   --bg-main: #0f172a;
   --bg-card: #020617;
   --bg-card-alt: #020617;
@@ -15,6 +25,31 @@
   --shadow-soft: 0 10px 30px rgba(15, 23, 42, 0.6);
 }
 
+:root[data-theme='light'] {
+  --bg-body: radial-gradient(circle at top left, #e5e7eb, #f9fafb 55%, #d1d5db);
+  --bg-surface: linear-gradient(145deg, #ffffff, #f9fafb);
+  --bg-surface-alt: radial-gradient(circle at top left, #e5e7eb, #f3f4f6);
+  --bg-input: radial-gradient(circle at top left, #ffffff, #f3f4f6);
+  --bg-input-focus: radial-gradient(circle at top left, #ffffff, #e5e7eb);
+  --bg-item: radial-gradient(circle at top left, #ffffff, #f3f4f6);
+  --bg-item-hover: radial-gradient(circle at top left, #f9fafb, #e5e7eb);
+  --border-elevated: rgba(148, 163, 184, 0.3);
+  --border-refresh: rgba(148, 163, 184, 0.6);
+  --border-item: rgba(59, 130, 246, 0.5);
+  --bg-main: #f3f4f6;
+  --bg-card: #ffffff;
+  --bg-card-alt: #f9fafb;
+  --border-color: #d1d5db;
+  --accent: #2563eb;
+  --accent-soft: rgba(37, 99, 235, 0.1);
+  --danger: #dc2626;
+  --danger-soft: rgba(220, 38, 38, 0.12);
+  --text-main: #0f172a;
+  --text-muted: #6b7280;
+  --shadow-card: 0 16px 40px rgba(15, 23, 42, 0.08);
+  --shadow-soft: 0 10px 30px rgba(15, 23, 42, 0.12);
+}
+
 *,
 *::before,
 *::after {
@@ -25,7 +60,7 @@ body {
   margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
     sans-serif;
-  background: radial-gradient(circle at top left, #1e293b, #020617 50%, #000);
+  background: var(--bg-body);
   color: var(--text-main);
   min-height: 100vh;
 }
@@ -66,10 +101,10 @@ body {
 
 .form-section,
 .list-section {
-  background: linear-gradient(145deg, #020617, #020617);
+  background: var(--bg-surface);
   border-radius: var(--radius-lg);
   padding: 22px 22px 20px;
-  border: 1px solid rgba(148, 163, 184, 0.15);
+  border: 1px solid var(--border-elevated);
   box-shadow: var(--shadow-card);
   backdrop-filter: blur(18px);
 }
@@ -93,8 +128,8 @@ body {
 .refresh-button {
   border-radius: 999px;
   padding: 6px 18px;
-  border: 1px solid rgba(148, 163, 184, 0.35);
-  background: radial-gradient(circle at top left, #0b1120, #020617);
+  border: 1px solid var(--border-refresh);
+  background: var(--bg-surface-alt);
   color: var(--text-main);
   font-size: 13px;
   cursor: pointer;
@@ -107,7 +142,7 @@ body {
 }
 
 .refresh-button:hover {
-  background: radial-gradient(circle at top left, #111827, #020617);
+  background: var(--bg-item-hover);
   transform: translateY(-1px);
   border-color: rgba(59, 130, 246, 0.7);
 }
@@ -156,7 +191,7 @@ body {
   border: 1px solid var(--border-color);
   padding: 9px 11px;
   font-size: 14px;
-  background: radial-gradient(circle at top left, #020617, #000);
+  background: var(--bg-input);
   color: var(--text-main);
   outline: none;
   transition: border-color 0.15s ease, box-shadow 0.15s ease,
@@ -179,7 +214,7 @@ body {
 .task-form select:focus {
   border-color: var(--accent);
   box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.4);
-  background: radial-gradient(circle at top left, #020617, #020617);
+  background: var(--bg-input-focus);
 }
 
 .form-actions {
@@ -216,13 +251,13 @@ body {
 }
 
 .btn-secondary {
-  background: radial-gradient(circle at top left, #111827, #020617);
+  background: var(--bg-surface-alt);
   color: var(--text-main);
-  border: 1px solid rgba(148, 163, 184, 0.4);
+  border: 1px solid var(--border-elevated);
 }
 
 .btn-secondary:hover {
-  background: radial-gradient(circle at top left, #1f2937, #020617);
+  background: var(--bg-item-hover);
 }
 
 .btn-danger {
@@ -249,10 +284,10 @@ body {
 }
 
 .task-item {
-  background: radial-gradient(circle at top left, #020617, #000);
+  background: var(--bg-item);
   border-radius: 16px;
   padding: 14px 14px 12px;
-  border: 1px solid rgba(30, 64, 175, 0.45);
+  border: 1px solid var(--border-item);
   box-shadow: 0 12px 30px rgba(15, 23, 42, 0.8);
   transition: transform 0.12s ease, box-shadow 0.12s ease,
     border-color 0.12s ease, background 0.12s ease;
@@ -262,7 +297,34 @@ body {
   transform: translateY(-2px);
   box-shadow: 0 18px 40px rgba(15, 23, 42, 0.9);
   border-color: rgba(59, 130, 246, 0.7);
-  background: radial-gradient(circle at top left, #020617, #020617);
+  background: var(--bg-item-hover);
+}
+
+.theme-toggle {
+  border-radius: 999px;
+  padding: 6px 16px;
+  font-size: 13px;
+  border: 1px solid var(--border-elevated);
+  background: var(--bg-surface-alt);
+  color: var(--text-main);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease,
+    border-color 0.2s ease, opacity 0.15s ease;
+  box-shadow: var(--shadow-soft);
+}
+
+.theme-toggle:hover {
+  background: var(--bg-item-hover);
+  transform: translateY(-1px);
+  border-color: rgba(59, 130, 246, 0.7);
+}
+
+.theme-toggle:active {
+  transform: translateY(0);
+  box-shadow: none;
 }
 
 .task-item-header {
